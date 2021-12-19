@@ -1,0 +1,103 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Assets/mana_projectiles/red_mana_proj.png" type="Texture" id=1]
+[ext_resource path="res://Source/Spells/red_mana_projectile.gd" type="Script" id=2]
+[ext_resource path="res://Assets/mana_projectiles/explosions.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 192, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 208, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 224, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 240, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 256, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 272, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 288, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 3 )
+region = Rect2( 304, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 12, 7, 12 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 24, 7, 12 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 36, 7, 12 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 48, 7, 12 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), null ],
+"loop": false,
+"name": "explosion",
+"speed": 15.0
+}, {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "proj",
+"speed": 15.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 2.0257, 4.32874 )
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 7.21875, 7.0625 )
+
+[node name="red_mana_proj" type="Area2D" groups=[
+"projectiles",
+]]
+rotation = 1.5708
+scale = Vector2( 4, 4 )
+gravity = 500.0
+collision_layer = 10
+collision_mask = 10
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -0.99969, 1.66615 )
+frames = SubResource( 13 )
+animation = "proj"
+
+[node name="projectile_collision" type="CollisionShape2D" parent="." groups=[
+"projectiles",
+]]
+position = Vector2( 0, -0.0175343 )
+shape = SubResource( 14 )
+
+[node name="explosion_collison" type="CollisionShape2D" parent="." groups=[
+"projectiles",
+]]
+position = Vector2( -1.0625, 1.625 )
+shape = SubResource( 15 )
+disabled = true
+
+[connection signal="body_entered" from="." to="." method="_on_red_mana_proj_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

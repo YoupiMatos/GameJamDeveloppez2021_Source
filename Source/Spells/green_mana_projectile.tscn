@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/mana_projectiles/green_mana_proj.png" type="Texture" id=1]
+[ext_resource path="res://Source/Spells/green_mana_projectile.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 12, 7, 12 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 24, 7, 12 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 36, 7, 12 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 48, 7, 12 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "proj",
+"speed": 15.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 2.30211, 3.47259 )
+
+[node name="green_mana_proj" type="Area2D" groups=[
+"projectiles",
+]]
+rotation = 1.5708
+scale = Vector2( 4, 4 )
+collision_layer = 10
+collision_mask = 10
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -0.911991, 2.59569 )
+frames = SubResource( 5 )
+animation = "proj"
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=[
+"projectiles",
+]]
+position = Vector2( 0.0701656, 3.8147e-06 )
+shape = SubResource( 6 )
+
+[connection signal="body_entered" from="." to="." method="_on_green_mana_proj_body_entered"]

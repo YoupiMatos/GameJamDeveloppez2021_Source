@@ -1,0 +1,229 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Assets/herochar sprites(new)/sword_effect_strip_4(new).png" type="Texture" id=1]
+[ext_resource path="res://Source/Actors/player.gd" type="Script" id=3]
+[ext_resource path="res://Assets/herochar sprites(new)/herochar_spritesheet(new).png" type="Texture" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4.42924, 7.78727 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 64, 65, 66 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 40, 41, 42, 43 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "jump_down"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 48, 49, 50 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "jump_up"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 56, 57, 58 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26, 27 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Area2D/melee_sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Area2D/melee_sprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Area2D/melee_hitbox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "move"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11, 12, 13 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "ranged_attack"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 26, 25 ]
+}
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 6.19624, 4.4316 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 4.90324, 7.77414 )
+
+[node name="player" type="KinematicBody2D" groups=[
+"melee",
+"player",
+]]
+scale = Vector2( 4, 4 )
+script = ExtResource( 3 )
+speed = Vector2( 300, 750 )
+gravity = 1000.0
+hp = 5
+
+[node name="character_hitbox" type="CollisionShape2D" parent="."]
+position = Vector2( -0.46822, 0.187288 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/hit = SubResource( 9 )
+anims/idle = SubResource( 2 )
+anims/jump_down = SubResource( 3 )
+anims/jump_up = SubResource( 4 )
+anims/melee_attack = SubResource( 5 )
+anims/move = SubResource( 6 )
+anims/ranged_attack = SubResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 7 )
+hframes = 8
+vframes = 15
+frame = 40
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_smoothed = true
+smoothing_enabled = true
+
+[node name="Area2D" type="Area2D" parent="." groups=[
+"melee",
+]]
+collision_layer = 8
+collision_mask = 8
+
+[node name="melee_sprite" type="Sprite" parent="Area2D"]
+visible = false
+texture = ExtResource( 1 )
+offset = Vector2( 15, 0 )
+flip_h = true
+hframes = 4
+
+[node name="melee_hitbox" type="CollisionShape2D" parent="Area2D" groups=[
+"melee",
+]]
+position = Vector2( 14.8676, 2.38379 )
+shape = SubResource( 8 )
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 9
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2( -0.529724, 0 )
+shape = SubResource( 10 )
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
